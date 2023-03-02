@@ -1,16 +1,24 @@
 import logo from './logo.svg';
 import './App.css';
+import Header from "./MyComponents/Header";
+import {Todos} from "./MyComponents/Todos";
+import {Footer} from "./MyComponents/Footer";
 
 function App() {
-  let myVariable=345;
+  let myVariable = 345;
   return (
     <>
-    <h3>My App</h3>
-    <p>My app works</p>
+      <Header title="My Todos List"/>
+      <Todos/>
+      <Footer/>
     </>
   );
 }
 
-// className is JSX i.e. JavaScript Sytax Extention.
+// classNameName is JSX i.e. JavaScript Sytax Extention.
 
 export default App;
+
+
+
+45.10////////
