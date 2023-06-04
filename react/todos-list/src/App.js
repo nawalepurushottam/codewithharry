@@ -7,7 +7,7 @@ import { About } from "./MyComponents/About";
 import React, { useState, useEffect } from 'react';
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route
 } from "react-router-dom";
 
@@ -15,8 +15,7 @@ function App() {
   let initTodo;
   if (localStorage.getItem("todos") === null) {
     initTodo = [];
-  }
-  else {
+  } else {
     initTodo = JSON.parse(localStorage.getItem("todos"));
   }
   const onDelete = (todo) => {
@@ -24,7 +23,7 @@ function App() {
     // Deleting this way in react does not work
     // let index = todos.indexOf(todo);
     // todos.splice(index, 1);
-
+    
     setTodos(todos.filter((e) => {
       return e !== todo;
     }));
@@ -36,8 +35,7 @@ function App() {
     let sno;
     if (todos.length === 0) {
       sno = 0;
-    }
-    else {
+    } else {
       sno = todos[todos.length - 1].sno + 1;
     }
     const myTodo = {
@@ -48,6 +46,7 @@ function App() {
     setTodos([...todos, myTodo]);
     console.log(myTodo);
   }
+
   const [todos, setTodos] = useState(initTodo);
 
   useEffect(() => {
@@ -58,21 +57,17 @@ function App() {
     <>
       <Router>
         <Header title="My Todos List" searchBar={false} />
-        <Switch>
-          <Route exact path="/" render={() => {
-            return (
-              <>
-                <AddTodo addTodo={addTodo} />
-                <Todos todos={todos} onDelete={onDelete} />
-              </>)
-          }}>
-          </Route>
-          <Route exact path="/about">
-            <About />
-          </Route>
-        </Switch >
+        <Routes>
+          <Route exact path="/" element={
+            <>
+              <AddTodo addTodo={addTodo} />
+              <Todos todos={todos} onDelete={onDelete} />
+            </>
+          } />
+          <Route exact path="/about" element={<About />} />
+        </Routes>
         <Footer />
-      </Router >
+      </Router>
     </>
   );
 }
