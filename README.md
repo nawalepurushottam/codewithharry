@@ -7,4 +7,4 @@
 5. React JS Tutorial
 6. Node JS Tutorial
 6. Angular Tutorial
-
+7. Django Tutorial
